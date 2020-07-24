@@ -460,17 +460,27 @@ gulp.task('generate-icon-names', done => {
   const content = JSON.parse(
     fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
   );
-  const entries = Object.entries(content).filter(x => !x[0].endsWith('-sm'));
-  const codify = name =>
-    name
+  const entries = Object.entries(content);
+  const codify = name => {
+    let result = name
       .replace('--', '-')
       .split('-')
       .map(format)
       .join('')
       .replace('Ios', 'iOS');
+    if (!result.endsWith('Sm')) {
+      result = `${result}Lg`;
+    }
+    return result;
+  };
   const templateData = Object.assign(
-    ...entries.map(([k]) => ({ [k]: codify(k) })),
+    ...entries.map(([k]) => ({ [codify(k)]: k })),
   );
+
+  // add custom star icon sizes used internally by Backpack:
+  templateData.StarHalfXl = `${templateData.StarHalfLg}-xl`;
+  templateData.StarOutlineXl = `${templateData.StarOutlineLg}-xl`;
+  templateData.StarXl = `${templateData.StarLg}-xl`;
 
   gulp
     .src(path.join(PATHS.templates, `{BPKIconNames.h.njk,BPKIconNames.m.njk}`))

@@ -20,6 +20,6 @@
 #import "BPKIconNames.h"
 
 {% for iconName, iconValue in icons -%}
-BPKIconName const BPKIconName{{iconValue}} = @"{{iconName}}";
+BPKIconName const BPKIconName{{iconName}} = @"{{iconValue}}";
 {% endfor %}
 // clang-format on

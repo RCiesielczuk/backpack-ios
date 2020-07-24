@@ -26,6 +26,6 @@ typedef NSString * BPKIconName NS_EXTENSIBLE_STRING_ENUM;
 
 {% for iconName, iconValue in icons -%}
 /// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconName{{iconValue}};
+FOUNDATION_EXPORT BPKIconName const BPKIconName{{iconName}};
 {% endfor %}
 // clang-format on
