@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     _size = size;
     _state = BPKStarStateDefault;
 
-    [self updateSize];
+    [self updateStarAppearance];
 }
 
 #pragma mark - Layout
@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     if (_size != size) {
         _size = size;
-        [self updateSize];
+        [self updateStarAppearance];
     }
 }
 
@@ -187,23 +187,16 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)updateSize {
-    self.starView.size = [self iconSizeForStarSize:self.size];
-
-    [self setNeedsLayout];
-    [self updateStarAppearance];
-}
-
 - (void)updateStarAppearance {
     switch (self.state) {
         case BPKStarStateDefault:
-            self.starView.iconName = BPKIconNameStarOutline;
+            self.starView.iconName = [self emptyStarIconNameForStarSize:self.size];
             break;
         case BPKStarStateHalf:
-            self.starView.iconName = BPKIconNameStarHalf;
+            self.starView.iconName = [self halfStarIconNameForStarSize:self.size];
             break;
         case BPKStarStateFull:
-            self.starView.iconName = BPKIconNameStar;
+            self.starView.iconName = [self starIconNameForStarSize:self.size];
             break;
     }
 

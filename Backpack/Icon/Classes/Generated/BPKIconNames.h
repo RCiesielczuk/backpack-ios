@@ -671,11 +671,19 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameMuteLg;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidBackSm;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidBackLg;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidCloseSm;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidCloseLg;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidForwardSm;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidForwardLg;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeiOSCloseSm;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeiOSCloseLg;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNavigationSm;
 /// :nodoc:
@@ -851,13 +859,19 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeakerLg;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfSm;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXl;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfLg;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineSm;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXl;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineLg;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarSm;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXl;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarLg;
 /// :nodoc:
@@ -1040,11 +1054,5 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldApacLg;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldEmeaSm;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldEmeaLg;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXl;
 
 // clang-format on

@@ -216,11 +216,12 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 + (CGSize)concreteSizeForIconName:(BPKIconName)iconName {
     if ([iconName hasSuffix:@"-xl"]) {
         return CGSizeMake(40, 40);
-    } else if ([iconName hasSuffix:@"-lg"]) {
-        return CGSizeMake(24, 24);
+    } else if ([iconName hasSuffix:@"-sm"]) {
+        return CGSizeMake(16, 16);
     }
-    
-    return CGSizeMake(16, 16);
+
+    // default is large, with no suffix
+    return CGSizeMake(24, 24);
 }
 
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint {

@@ -468,7 +468,7 @@ gulp.task('generate-icon-names', done => {
       .map(format)
       .join('')
       .replace('Ios', 'iOS');
-    if (!result.endsWith('Sm')) {
+    if (!result.endsWith('Sm') && !result.endsWith('Xl')) {
       result = `${result}Lg`;
     }
     return result;
@@ -476,11 +476,6 @@ gulp.task('generate-icon-names', done => {
   const templateData = Object.assign(
     ...entries.map(([k]) => ({ [codify(k)]: k })),
   );
-
-  // add custom star icon sizes used internally by Backpack:
-  templateData.StarHalfXl = `${templateData.StarHalfLg}-xl`;
-  templateData.StarOutlineXl = `${templateData.StarOutlineLg}-xl`;
-  templateData.StarXl = `${templateData.StarLg}-xl`;
 
   gulp
     .src(path.join(PATHS.templates, `{BPKIconNames.h.njk,BPKIconNames.m.njk}`))
