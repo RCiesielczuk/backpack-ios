@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithSize:(BPKStarSize)size {
 
-    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarOutline size:BPKIconSizeSmall];
+    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarOutlineSm];
     self.starView.translatesAutoresizingMaskIntoConstraints = NO;
     self.starView.flipsForRightToLeft = YES;
     [self addSubview:self.starView];
@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Layout
 
 - (CGSize)intrinsicContentSize {
-    return [BPKIcon concreteSizeForIconSize:[self iconSizeForStarSize:self.size]];
+    return [BPKIcon concreteSizeForIconName:[self starIconNameForStarSize:self.size]];
 }
 
 #pragma mark - Setters
@@ -142,17 +142,47 @@ NS_ASSUME_NONNULL_BEGIN
     return self.starColor != nil ? self.starColor : [self.class defaultStarColor];
 }
 
-- (BPKIconSize)iconSizeForStarSize:(BPKStarSize)size {
+- (BPKIconName)starIconNameForStarSize:(BPKStarSize)size {
     switch (size) {
     case BPKStarSizeXLarge:
-        return BPKIconSizeXLarge;
+        return BPKIconNameStarXl;
         break;
     case BPKStarSizeLarge:
-        return BPKIconSizeLarge;
+        return BPKIconNameStarLg;
         break;
     default:
     case BPKStarSizeSmall:
-        return BPKIconSizeSmall;
+        return BPKIconNameStarSm;
+        break;
+    }
+}
+
+- (BPKIconName)halfStarIconNameForStarSize:(BPKStarSize)size {
+    switch (size) {
+    case BPKStarSizeXLarge:
+        return BPKIconNameStarHalfXl;
+        break;
+    case BPKStarSizeLarge:
+        return BPKIconNameStarHalfLg;
+        break;
+    default:
+    case BPKStarSizeSmall:
+        return BPKIconNameStarHalfSm;
+        break;
+    }
+}
+
+- (BPKIconName)emptyStarIconNameForStarSize:(BPKStarSize)size {
+    switch (size) {
+    case BPKStarSizeXLarge:
+        return BPKIconNameStarOutlineXl;
+        break;
+    case BPKStarSizeLarge:
+        return BPKIconNameStarOutlineLg;
+        break;
+    default:
+    case BPKStarSizeSmall:
+        return BPKIconNameStarOutlineSm;
         break;
     }
 }

@@ -33,23 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
  * Initializes and returns a Backpack Icon View with the specific icon name and size.
  *
  * @param iconName The name of the Backpack icon to display in the view.
- * @param size The size the icon should be displayed at.
  * @return An initialized Backpack icon view
  */
-- (instancetype)initWithIconName:(nullable BPKIconName)iconName size:(BPKIconSize)size;
+- (instancetype)initWithIconName:(nullable BPKIconName)iconName;
 
 /**
  * The name of the icon currently being displayed. Setting updates
  * the displayed icon.
  */
 @property(nullable, nonatomic, copy) BPKIconName iconName;
-
-/**
- * The size of the icon currently being displayed. Setting updates
- * the displayed icon.
- * @see BPKIconSize
- */
-@property(nonatomic, assign) BPKIconSize size;
 
 /**
  * If flipsForRightToLeft is set to YES then BPKIconView will render its icon
@@ -60,12 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// :nodoc:
 - (instancetype)initWithImage:(nullable UIImage *)image
-    __attribute__((unavailable("use `initWithIconName:size:` instead")));
+    __attribute__((unavailable("use `initWithIconName:` instead")));
 
 /// :nodoc:
 - (instancetype)initWithImage:(nullable UIImage *)image
              highlightedImage:(nullable UIImage *)highlightedImage
-    __attribute__((unavailable("use a `UIImageView` and `BPKIcon`s `iconNamed:color:size:` instead.")));
+    __attribute__((unavailable("use a `UIImageView` and `BPKIcon`s `iconNamed:color:` instead.")));
 
 /// :nodoc:
 - (void)setImage:(nullable UIImage *)image

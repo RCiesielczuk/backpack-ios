@@ -25,7 +25,7 @@ class TabBarControllerStoryViewController: BPKTabBarController {
         tabOne.view.backgroundColor = BPKColor.backgroundColor
         let tabOneBarItem = UITabBarItem(
             title: "Search",
-            image: BPKIcon.makeTemplateIcon(name: .search, size: .large),
+            image: BPKIcon.makeTemplateIcon(name: .searchLg),
             tag: 1
         )
         tabOne.tabBarItem = tabOneBarItem
@@ -34,7 +34,7 @@ class TabBarControllerStoryViewController: BPKTabBarController {
         tabTwo.view.backgroundColor = BPKColor.backgroundColor
         let tabTwoBarItem = UITabBarItem(
             title: "Settings",
-            image: BPKIcon.makeTemplateIcon(name: .settings, size: .large),
+            image: BPKIcon.makeTemplateIcon(name: .settingsLg),
             tag: 2
         )
         tabTwo.tabBarItem = tabTwoBarItem

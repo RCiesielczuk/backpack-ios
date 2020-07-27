@@ -314,7 +314,7 @@ NS_ASSUME_NONNULL_BEGIN
             [self.iconView removeFromSuperview];
             self.iconView = nil;
         } else {
-            self.iconView = [[BPKIconView alloc] initWithIconName:iconName size:BPKIconSizeLarge];
+            self.iconView = [[BPKIconView alloc] initWithIconName:iconName];
             [self addSubview:self.iconView];
             [self updateStyle];
         }

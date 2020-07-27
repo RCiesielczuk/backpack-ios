@@ -154,12 +154,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateIconStyle {
-    BPKIconSize size = self.size == BPKHorizontalNavigationSizeDefault ? BPKIconSizeLarge : BPKIconSizeSmall;
-
     if (self.iconName == nil) {
         [self setImage:nil forState:UIControlStateNormal];
     } else {
-        UIImage *iconImage = [BPKIcon iconNamed:self.iconName color:self.contentColor size:size];
+        UIImage *iconImage = [BPKIcon iconNamed:self.iconName color:self.contentColor];
         [self setImage:iconImage forState:UIControlStateNormal];
         self.adjustsImageWhenHighlighted = NO;
     }

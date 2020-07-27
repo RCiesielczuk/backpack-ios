@@ -21,33 +21,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * Available icon sizes.
- *
- * To find the concrete point size use `concreteSizeForIconSize:`
- *
- * @see concreteSizeForIconSize:
- */
-typedef NS_ENUM(NSUInteger, BPKIconSize) {
-    /**
-     * Small icon size.
-     */
-    BPKIconSizeSmall,
-
-    /**
-     * Large icon size.
-     */
-    BPKIconSizeLarge,
-
-    /**
-     * Extra large icon size.
-     *
-     * **Note:** This should be used rarely as icons are not designed to be scaled this large
-     * please review usage of every icon used at this size carefully.
-     */
-    BPKIconSizeXLarge
-};
-
 @class UIImage;
 
 /**
@@ -68,29 +41,26 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
  *
  * @param name The name of the icon e.g. "flight".
- * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage` in template mode.
  */
-+ (UIImage *)templateIconNamed:(BPKIconName)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:));
++ (UIImage *)templateIconNamed:(BPKIconName)name NS_SWIFT_NAME(makeTemplateIcon(name:));
 
 /**
  * Render a given icon as a UIImage.
  *
  * @param name The name of the icon e.g. "flight".
  * @param color The color to render the icon in.
- * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
 + (UIImage *)iconNamed:(BPKIconName)name
-                 color:(UIColor *)color
-                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
+                 color:(UIColor *)color NS_SWIFT_NAME(makeIcon(name:color:));
 
 /**
  * Calculates the concrete point size a given BPKIconSize.
  *
- * @param size The size for which to calculate the concrete size.
+ * @param iconName The BPKIconName for which to calculate the concrete size.
  * @return The concerete point size for the given size.
  */
-+ (CGSize)concreteSizeForIconSize:(BPKIconSize)size NS_SWIFT_NAME(concreteSize(forSize:));
++ (CGSize)concreteSizeForIconName:(BPKIconName)iconName NS_SWIFT_NAME(concreteSize(forIconName:));
 @end
 NS_ASSUME_NONNULL_END

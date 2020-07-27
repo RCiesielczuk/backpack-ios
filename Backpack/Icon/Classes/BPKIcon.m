@@ -29,7 +29,7 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 @property(class, nonatomic, readonly) NSParagraphStyle *paragraphStyle;
 
 + (NSBundle *)iconBundle;
-+ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color size:(BPKIconSize)size;
++ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color;
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint;
 @end
 
@@ -80,16 +80,16 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 #endif
 }
 
-+ (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
-    UIImage *image = [self iconNamed:name color:UIColor.blackColor size:size];
++ (UIImage *)templateIconNamed:(NSString *)name {
+    UIImage *image = [self iconNamed:name color:UIColor.blackColor];
 
     return [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
-+ (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size {
-    CGSize iconSize = [self concreteSizeForIconSize:size];
++ (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color {
+    CGSize iconSize = [self concreteSizeForIconName:name];
 
-    NSString *cacheKey = [self cacheKeyForIconNamed:name withColor:color size:size];
+    NSString *cacheKey = [self cacheKeyForIconNamed:name withColor:color];
     UIImage *icon = [self.imageCache objectForKey:cacheKey];
 
     if (icon) {
@@ -98,7 +98,7 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 
     UIGraphicsBeginImageContextWithOptions(iconSize, NO, 0.0);
 
-    NSString *codepoint = [self codepointForIcon:name size:size];
+    NSString *codepoint = [self codepointForIcon:name];
     NSString *iconCodepoint = [self stringForUnicodeCodepoint:codepoint];
 
     UIFont *font = [UIFont fontWithName:BPKIconFontName size:iconSize.height];
@@ -123,17 +123,12 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     return icon;
 }
 
-+(NSString *)codepointForIcon:(NSString *)name size:(BPKIconSize)size {
-    NSString *lookupKey = name;
-    if(size == BPKIconSizeSmall) {
-        lookupKey = [NSString stringWithFormat:@"%@%@", name, @"-sm"];
-    }
-
++(NSString *)codepointForIcon:(NSString *)name {
     if (self.iconMapping) {
-        NSAssert([self.iconMapping objectForKey:lookupKey], @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the size you are trying to use https://backpack.github.io/components/icon?platform=design", name);
+        NSAssert([self.iconMapping objectForKey:name], @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the size you are trying to use https://backpack.github.io/components/icon?platform=design", name);
     }
 
-    return [self.iconMapping objectForKey:lookupKey];
+    return [self.iconMapping objectForKey:name];
 }
 
 #pragma mark - Private
@@ -211,46 +206,21 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     return iconBundle;
 }
 
-+ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color size:(BPKIconSize)size {
-    NSString *sizeName;
-
-    switch (size) {
-    case BPKIconSizeSmall:
-        sizeName = @"sm";
-        break;
-    case BPKIconSizeLarge:
-        sizeName = @"lg";
-        break;
-    case BPKIconSizeXLarge:
-        sizeName = @"xl";
-        break;
-    default:
-        NSAssert(NO, @"Unknown icon size");
-        sizeName = @"unknown";
-    }
-
++ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color {
     CGFloat const *components = CGColorGetComponents(color.CGColor);
-
+    
     return [NSString
-        stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
+            stringWithFormat:@"%@%f%f%f%f", name, components[0], components[1], components[2], components[3]];
 }
 
-+ (CGSize)concreteSizeForIconSize:(BPKIconSize)size {
-    switch (size) {
-    case BPKIconSizeSmall:
-        return CGSizeMake(16, 16);
-        break;
-    case BPKIconSizeLarge:
-        return CGSizeMake(24, 24);
-        break;
-    case BPKIconSizeXLarge:
++ (CGSize)concreteSizeForIconName:(BPKIconName)iconName {
+    if ([iconName hasSuffix:@"-xl"]) {
         return CGSizeMake(40, 40);
-        break;
-    default:
-        NSAssert(NO, @"Unsupported icon size");
-        return CGSizeMake(16, 16);
-        break;
+    } else if ([iconName hasSuffix:@"-lg"]) {
+        return CGSizeMake(24, 24);
     }
+    
+    return CGSizeMake(16, 16);
 }
 
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint {

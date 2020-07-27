@@ -37,11 +37,11 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
 
         if showIcons {
             horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
+                BPKHorizontalNavigationOption(name: "Flights", iconName: .flightLg, tag: 0),
                 BPKHorizontalNavigationOption(name: "Hotels", tag: 1,
-                                              iconName: .hotels,
+                                              iconName: .hotelsLg,
                                               showNotificationDot: showNotificationDot),
-                BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag: 2)
+                BPKHorizontalNavigationOption(name: "Car hire", iconName: .carsLg, tag: 2)
             ]
         } else {
             horizontalNav.options = [
@@ -69,7 +69,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
 
         if useItemWithBadge {
             horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
+                BPKHorizontalNavigationOption(name: "Flights", iconName: .flightLg, tag: 0),
                 BPKHorizontalNavigationOptionWithBadge(title: "Hotels", badgeMessage: "NEW", tag: 1),
                 BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
             ]

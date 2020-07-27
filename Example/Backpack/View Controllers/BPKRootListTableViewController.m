@@ -32,7 +32,7 @@
     [super viewDidLoad];
 
     if (ThemeHelpers.isThemingSupported) {
-        UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];
+        UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:BPKIconNameSettingsLg];
         self.settingsButton.image = largeSettingsIcon;
         self.settingsButton.accessibilityLabel = @"Settings";
 

@@ -24,10 +24,12 @@ class IconsViewController: UICollectionViewController {
     fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
     fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
     fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
+    fileprivate static var xlIconList = iconList.filter({ $0.hasSuffix("-xl") })
 
     fileprivate static var icons = [
-        (heading: "Large icons", size: BPKIconSize.large, icons: largeIconList),
-        (heading: "Small icons", size: BPKIconSize.small, icons: smallIconList)
+        (heading: "Large icons", icons: largeIconList),
+        (heading: "Small icons", icons: smallIconList),
+        (heading: "Extra large icons", icons: xlIconList)
     ]
 
     fileprivate static let cellIdentifier = "IconsPreviewCollectionViewCell"
@@ -85,17 +87,7 @@ extension IconsViewController {
 
         let iconSet = IconsViewController.icons[indexPath.section]
 
-        // Whether we set `size` or `icon` first, we will potentially be trying to use an icon that doesn't exist.
-        // By setting the icon to `accessibility`, then setting the size, and then setting the iconName, we should
-        // never be trying to use an icon at an unavailable size.
-        cell.icon = BPKIconName.accessibility
-
-        cell.size = iconSet.size
-        var icon = iconSet.icons[indexPath.row]
-
-        if icon.hasSuffix("-sm") {
-            icon.removeLast(3)
-        }
+        let icon = iconSet.icons[indexPath.row]
         cell.icon = BPKIconName(icon)
 
         return cell
